@@ -1,5 +1,6 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
-import UserEntity from "../../@types/types.db";
+import { UserEntity } from "@src/User/domain/user.entity";
+import bcryptjs from "bcryptjs";
 @Table({
   timestamps: false,
   tableName: "User",
@@ -41,4 +42,10 @@ export class User extends Model<UserEntity> {
     allowNull: false,
   })
   description!: string;
+  static async encryptPassword(password: string): Promise<string> {
+    return bcryptjs.hash(password, 10);
+  }
+  async validatePassword(password: string): Promise<boolean> {
+    return await bcryptjs.compare(password, this.password);
+  }
 }
