@@ -1,5 +1,5 @@
 import { UserUseCase } from "@application/user.useCase";
-import { RequerstInterface, ResponseInterface } from "./@types/interfaces";
+import { RequerstInterface, ResponseInterface } from "./@types/interfaces.ctrl";
 import { Tools } from "@infrastructure/validations/user.validations";
 
 interface error {
