@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { UserEntity } from "./user.entity";
+import { UserEntity, UserOmitId } from "./user.entity";
 
 export class UserValue implements UserEntity {
   name: string;
@@ -8,17 +8,7 @@ export class UserValue implements UserEntity {
   description: string;
   id: string;
 
-  constructor({
-    name,
-    email,
-    phoneNumber,
-    description,
-  }: {
-    name: string;
-    email: string;
-    phoneNumber: number;
-    description: string;
-  }) {
+  constructor({ name, email, phoneNumber, description }: UserOmitId) {
     (this.name = name),
       (this.email = email),
       (this.phoneNumber = phoneNumber),

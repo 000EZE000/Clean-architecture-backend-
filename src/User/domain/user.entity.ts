@@ -5,3 +5,5 @@ export interface UserEntity {
   phoneNumber: number;
   description: string;
 }
+
+export type UserOmitId = Omit<UserEntity, "id">;
