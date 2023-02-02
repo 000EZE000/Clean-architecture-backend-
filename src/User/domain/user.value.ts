@@ -4,15 +4,17 @@ import { UserEntity, UserOmitId } from "./user.entity";
 export class UserValue implements UserEntity {
   name: string;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
   description: string;
   id: string;
+  password: string;
 
-  constructor({ name, email, phoneNumber, description }: UserOmitId) {
+  constructor({ name, email, phoneNumber, description, password }: UserOmitId) {
     (this.name = name),
       (this.email = email),
       (this.phoneNumber = phoneNumber),
       (this.description = description),
-      (this.id = uuid());
+      (this.id = uuid()),
+      (this.password = password);
   }
 }

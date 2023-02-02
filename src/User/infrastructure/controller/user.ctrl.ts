@@ -1,6 +1,6 @@
 import { UserUseCase } from "@application/user.useCase";
 import { RequerstInterface, ResponseInterface } from "./@types/interfaces.ctrl";
-import { Tools } from "@infrastructure/validations/user.validations";
+import { Tools } from "../validations/user.validations";
 
 interface error {
   msg: string;
@@ -58,7 +58,7 @@ export class UserController {
   };
 
   public userListCtrl = async (
-    _req: ResponseInterface,
+    req: RequerstInterface,
     res: ResponseInterface,
   ) => {
     try {

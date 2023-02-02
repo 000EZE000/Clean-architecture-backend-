@@ -11,5 +11,5 @@ export interface RequerstInterface extends Request {
 }
 
 export type ResponseInterface = Response<
-  UserEntity | { msg: string } | UserEntity[] | boolean
+  UserEntity | { msg: string } | UserEntity[] | boolean | string
 >;

@@ -3,7 +3,7 @@ export interface UserEntity {
   name: string;
   email: string;
   password: string;
-  phoneNumber: number;
+  phoneNumber: string;
   description: string;
 }
 

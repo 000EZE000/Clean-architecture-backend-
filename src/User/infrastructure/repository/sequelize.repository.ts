@@ -3,16 +3,19 @@ import { User } from "../db/sequilize/models/User.model";
 
 export class SequilizeRepository {
   async findUserById(id: UserEntity["id"]) {
-    return await User.findByPk(id);
-  }
-  async registerUser(newUser: UserEntity) {
-    const user = User.build(newUser);
-    user.password = await User.encryptPassword(user.password);
-    await user.save();
+    const user: UserEntity | null = await User.findByPk(id);
     return user;
   }
-  async listUsers() {
-    return await User.findAll();
+
+  async registerUser(newUser: UserEntity) {
+    const sequelizeUser = User.build(newUser);
+    sequelizeUser.password = await User.encryptPassword(sequelizeUser.password);
+    const user: UserEntity = await sequelizeUser.save();
+    return user;
+  }
+  async getAllUser() {
+    const user: UserEntity[] = await User.findAll();
+    return user;
   }
   async deleteUser(id: UserEntity["id"]) {
     const user = await User.destroy({ where: { id } });
@@ -29,7 +32,6 @@ export class SequilizeRepository {
     const user = await User.update(
       {
         name,
-        email,
         description,
         phoneNumber,
         password,
@@ -37,6 +39,6 @@ export class SequilizeRepository {
       { where: { email } },
     );
     console.log({ user });
-    return user;
+    return `${user}`;
   }
 }

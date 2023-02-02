@@ -16,7 +16,7 @@ export class UserUseCase {
     return await this.userRepositoty.deleteUser(id);
   };
   public getAllUser = async () => {
-    return await this.userRepositoty.listeUser();
+    return await this.userRepositoty.getAllUser();
   };
   public updateUser = async (userDataUpdate: UserOmitId) => {
     return await this.userRepositoty.updateUser(userDataUpdate);
