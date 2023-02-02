@@ -7,6 +7,7 @@ const {
   DB_PASS_SEQUILIZE,
   DB_HOST_SEQUILIZE,
   DB_NAME_SEQUILIZE,
+  DB_PORT_SEQUILIZE,
 } = process.env;
 
 const sequelize = new Sequelize({
@@ -15,17 +16,24 @@ const sequelize = new Sequelize({
   username: DB_USER_SEQUILIZE,
   password: DB_PASS_SEQUILIZE,
   host: DB_HOST_SEQUILIZE,
+  port: Number(DB_PORT_SEQUILIZE),
   logging: false,
   models: [User],
 });
 
-sequelize
-  .sync()
-  .then(() => {
-    console.log("Start database Postgres Typescritp-sequilize");
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+const initSequilize = (boolean: boolean = true) => {
+  const alterOrForce = boolean ? { alter: true } : { force: true };
+  const messageStatus = boolean ? "alter" : "force";
+  sequelize
+    .sync(alterOrForce)
+    .then(() => {
+      console.log(
+        `Start Typescritp-sequilize database Postgres  status ${messageStatus}`
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
-export default sequelize;
+export default initSequilize;
