@@ -1,10 +1,10 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
-
+import UserEntity from "../../@types/types.db";
 @Table({
   timestamps: false,
   tableName: "User",
 })
-export class User extends Model {
+export class User extends Model<UserEntity> {
   @Column({
     type: DataType.STRING,
     allowNull: false,
